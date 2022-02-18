@@ -1,0 +1,36 @@
+<div class="w-100">
+  <h1 class="title is-1 text-center">TODOS APP</h1>
+  <div class="w-100 d-flex justify-content-center">
+    <div class="card m-5">
+      <div class="action mb-1 w-100 d-flex justify-content-around mt-2">
+        <div>
+          <input
+            class="input"
+            type="text"
+            [value]="task"
+            placeholder="Add your new todo"
+            (change)="addTask($event)"
+            (keyup.enter)="addTask($event)"
+          />
+        </div>
+        <div>
+          <button class="button is-primary" (click)="addItem()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div cdkDropList (cdkDropListDropped)="drop($event)" class="scroll">
+        <div
+          class="list p-2 m-2 d-flex justify-content-between"
+          *ngFor="let todo of todos; let i = index"
+          cdkDrag
+        >
+          {{ todo.task }}
+          <div class="cursor-pointer" (click)="removeItem(i)">
+            <i class="fas fa-trash-alt del-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
